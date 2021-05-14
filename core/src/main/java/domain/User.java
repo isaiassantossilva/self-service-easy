@@ -9,6 +9,8 @@ public class User {
     private String password;
     private Permission permission;
 
+    User(){}
+
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
@@ -16,6 +18,7 @@ public class User {
         this.permission = Permission.CLIENT;
     }
 
+    //TODO: remover o set do ID
     public void setId(String id) {
         this.id = id;
     }
