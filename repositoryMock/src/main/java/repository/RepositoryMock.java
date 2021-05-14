@@ -15,18 +15,9 @@ public class RepositoryMock implements UserRepositoryPort {
 
     @Override
     public User save(User user) {
-        try {
-            var idField = user.getClass().getDeclaredField("id");
-            idField.setAccessible(true);
-            idField.set(user, UUID.randomUUID().toString());
-            idField.setAccessible(false);
-            users.put(user.getId(), user);
-            var userSaved = users.get(user.getId());
-            return userSaved;
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        }
+        user.setId(UUID.randomUUID().toString());
+        users.put(user.getId(), user);
+        return users.get(user.getId());
     }
 
     @Override
